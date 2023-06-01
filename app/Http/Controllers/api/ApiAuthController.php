@@ -31,7 +31,7 @@ class ApiAuthController extends Controller
         $data->no_hp = $request->no_hp;
         $data->alamat = $request->alamat;
         $data->jk = $request->jk;
-        $data->role_id = 2;
+        $data->role_id = $request->jk;
         $data->save();
 
         // kirim response
