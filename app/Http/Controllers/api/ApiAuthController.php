@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\api;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -61,5 +64,27 @@ class ApiAuthController extends Controller
             'data' => $token,
             'user' => $user,
         ]);
+    }
+    public function me(Request $request)
+    {
+        return response()->json(Auth::user());
+    }
+    public function barang()
+    {
+        $siswa = DB::select("SELECT * FROM barang");
+
+            if ($siswa != false) {
+            return response()->json([
+            'success' => true,
+            'message' => 'Data tersedia',
+            'data' => $siswa
+            ], Response::HTTP_OK);
+            } else {
+            return response()->json([
+            'success' => false,
+            'message' => 'Data tidak tersedia',
+            'data' => $siswa
+            ], Response::HTTP_OK);
+            }
     }
 }
