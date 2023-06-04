@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,10 @@ Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::post('/aksi_login', [AuthController::class, 'login'])->name('aksi_login');
 
+Route::get('/produk', [ProdukController::class, 'produk'])->name('produk');
+Route::post('/tambahproduk', [ProdukController::class, 'tambah_produk'])->name('produk.post');
+Route::delete('/hapusproduk/{id}', [ProdukController::class, 'hapus_produk'])->name('hapus.produk');
+Route::post('/editproduk/{id}', [ProdukController::class, 'edit_produk'])->name('edit.produk');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
+
