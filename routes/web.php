@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PemesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +18,31 @@ use App\Http\Controllers\DashboardController;
 |
 */
 Route::get('/', [AuthController::class, 'index'])->name('login');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::post('/aksi_login', [AuthController::class, 'login'])->name('aksi_login');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::controller(DashboardController::class)->group( function(){
+    Route::get('/dashboard', 'index')->name('dashboard');
+    Route::get('/profile','profile')->name('profile');
+    Route::post('/edit-profile/{id}','edit_profile')->name('edit.profile');
+});
+
+Route::controller(LaporanController::class)->group( function(){
+    Route::get('/laporan','laporan')->name('laporan');
+});
 
 Route::get('/produk', [ProdukController::class, 'produk'])->name('produk');
 Route::post('/tambahproduk', [ProdukController::class, 'tambah_produk'])->name('produk.post');
 Route::delete('/hapusproduk/{id}', [ProdukController::class, 'hapus_produk'])->name('hapus.produk');
 Route::post('/editproduk/{id}', [ProdukController::class, 'edit_produk'])->name('edit.produk');
+
+Route::controller(PemesananController::class)->group( function (){
+    Route::get('/pemesanan','pemesanan')->name('pemesanan');
+    Route::post('/update-pemesanan/{id}','update_pemesanan')->name('update.pemesanan');
+});
+
+
 
 
 

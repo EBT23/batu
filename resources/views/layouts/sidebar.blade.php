@@ -18,12 +18,12 @@
                             class="hide-menu">Produk</span></a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('pemesanan') }}"
                         aria-expanded="false"><i class="mdi mdi-border-inside"></i><span
                             class="hide-menu">Pemesanan</span></a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('laporan') }}"
                         aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Laporan
                             Penjualan</span></a>
                 </li>
@@ -32,11 +32,11 @@
                         aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Users </span></a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span
+                            <a href="{{ route('profile') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span
                                     class="hide-menu"> My Profile </span></a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span
+                            <a href="{{ route('logout') }}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span
                                     class="hide-menu"> Logout </span></a>
                         </li>
                     </ul>

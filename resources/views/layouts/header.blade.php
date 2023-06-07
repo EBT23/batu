@@ -7,19 +7,19 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="dashboard">
                 <!-- Logo icon -->
                 <b class="logo-icon ps-2">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="{{ asset('assets/assets/images/logo-icon.png') }}" alt="homepage" class="light-logo"
-                        width="25" />
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="homepage" class="light-logo"
+                        width="30" />
                 </b>
                 <!--End Logo icon -->
                 <!-- Logo text -->
-                <span class="logo-text ms-2">
+                <span class="logo-text ms-2 text-center">
                     <!-- dark Logo text -->
-                    <img src="{{ asset('assets/assets/images/logo-text.png') }}" alt="homepage" class="light-logo" />
+                    <h6>SISTEM  <br>PEMESANAN BATU</h6>
                 </span>
                 <!-- Logo icon -->
                 <!-- <b class="logo-icon"> -->
@@ -221,7 +221,7 @@
                             Account
                             Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off me-1 ms-1"></i>
+                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="fa fa-power-off me-1 ms-1"></i>
                             Logout</a>
                         <div class="dropdown-divider"></div>
                         <div class="ps-4 p-10">

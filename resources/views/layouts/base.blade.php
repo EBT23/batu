@@ -11,10 +11,13 @@
     <meta name="description"
         content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Sistem Pemesanan Batu</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/assets/images/favicon.png') }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/assets/images/logo.png') }}" />
     <!-- Custom CSS -->
+    <link href="{{ asset('assets/bootstrap.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/dataTables.bootstrap5.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/responsive.bootstrap5.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/assets/libs/fullcalendar/dist/fullcalendar.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/assets/extra-libs/calendar/calendar.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/dist/css/style.min.css') }}" rel="stylesheet" />
@@ -102,6 +105,12 @@
       myInput.focus()
     })
     </script>
+
+<script>
+    $(document).ready(function() {
+    $('#edataTable').DataTable();
+} );
+</script>
 </body>
 
 </html>
