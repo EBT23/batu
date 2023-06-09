@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Barang;
 use App\Models\Pemesanan;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ApiAllController extends Controller
 {
@@ -72,6 +73,7 @@ class ApiAllController extends Controller
         $barang = Barang::find($request->input('id_barang'));
         $berat = $request->input('jumlah_berat');
         $id_barang = $request->input('id_barang');
+        $id_user = Auth::id();
     
         if (!$barang) {
            
@@ -83,6 +85,7 @@ class ApiAllController extends Controller
        
         $pemesanan = new Pemesanan();
         $pemesanan->id_barang = $id_barang;
+        $pemesanan->id_user = $id_user;
         $pemesanan->jumlah_berat = $berat;
         // $pemesanan->barang_in = Carbon::now()->format('H:i');
         $pemesanan->barang_in = null;

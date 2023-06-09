@@ -32,6 +32,7 @@
                       <tr role="row">
                         <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 202.48px;">Nama Barang</th>
                         <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 322.48px;">Jumlah Berat</th>
+                        <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 322.48px;">Nama Pemesan</th>
                         <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 130.742px;">Barang In</th>
                         <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 130.742px;">Barang Out</th>
                         <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 130.742px;">Status Pemesanan</th>
@@ -46,6 +47,7 @@
                                 {{ $item->nama_barang }}
                             </td>
                             <td>{{ $item->jumlah_berat }}</td>
+                            <td>{{ $item->name }}</td>
                             <td>
                                 @if ($item->barang_in == null)
                                     <p>-</p>
