@@ -12,7 +12,7 @@ class PemesananController extends Controller
         $pemesanan = DB::table('pemesanan')
             ->join('barang','barang.id','=','pemesanan.id_barang')
             ->join('users','users.id','=','pemesanan.id_user')
-            ->select('pemesanan.*','barang.nama_barang','users.name')
+            ->select('pemesanan.*','barang.nama_barang','barang.harga','users.name')
             ->get();
 
 

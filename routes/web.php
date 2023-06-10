@@ -30,6 +30,7 @@ Route::controller(DashboardController::class)->group( function(){
 
 Route::controller(LaporanController::class)->group( function(){
     Route::get('/laporan','laporan')->name('laporan');
+    Route::get('/export-excel','downloadExcel')->name('export.excel');
 });
 
 Route::get('/produk', [ProdukController::class, 'produk'])->name('produk');
