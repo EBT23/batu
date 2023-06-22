@@ -35,3 +35,4 @@ Route::post('/register', [ApiAuthController::class, 'register']);
     Route::post('/add_pemesanan',[ApiAllController::class,'add_pemesanan']);
     Route::put('/update_pemesanan/{id}',[ApiAllController::class,'update_pemesanan']);
     Route::delete('/delete_pemesanan/{id}',[ApiAllController::class,'delete_pemesanan']);
+    Route::post('/updateTransaksi', [ApiAllController::class, 'updateTransaksi']);

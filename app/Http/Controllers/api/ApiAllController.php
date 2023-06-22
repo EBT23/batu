@@ -135,12 +135,9 @@ class ApiAllController extends Controller
         ]);
     }
 
-    public function get_pemesanan_by_id($id)
+    public function get_pemesanan_by_id($id_user)
     {
-        $pemesanan = DB::table('pemesanan')
-        ->where('id_user', '=', $id)
-        ->get();
-
+        $pemesanan = DB::select("select p.*, b.nama_barang, b.keterangan, b.gambar, b.harga as harga_barang from pemesanan p left join barang b on b.id=p.id_barang where p.id_user = '$id_user'");
 
         return response()->json([
             'success' => true,
@@ -220,6 +217,24 @@ class ApiAllController extends Controller
             'message' => 'pemesanan berhasil dihapus',
             'data' => $pemesanan
         ]);
+    }
+
+    public function updateTransaksi(Request $request)
+    {
+        $order_id = $request->input('order_id');
+        $save = [
+            'status_pemesanan' => 'Pending'
+        ];
+
+        $updateTransaksi = DB::table('pemesanan')
+            ->where('order_id', $order_id)
+            ->update($save);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'pemesanan berhasil dihapus',
+                'data' => $updateTransaksi
+            ]);
     }
 
 }
