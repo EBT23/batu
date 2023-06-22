@@ -138,8 +138,9 @@ class ApiAllController extends Controller
     public function get_pemesanan_by_id($id)
     {
         $pemesanan = DB::table('pemesanan')
-        ->where('id', '=', $id)
+        ->where('id_user', '=', $id)
         ->get();
+
 
         return response()->json([
             'success' => true,
@@ -157,8 +158,8 @@ class ApiAllController extends Controller
 
         $barang = Barang::find($request->input('id_barang'));
         $berat = $request->input('jumlah_berat');
-        $id_barang = $request->input('id_barang');
-        $id_user = Auth::id();
+        $ $id_barang = $request->input('id_barang');
+
     
         if (!$barang) {
            
@@ -170,7 +171,7 @@ class ApiAllController extends Controller
        
         $pemesanan = new Pemesanan();
         $pemesanan->id_barang = $id_barang;
-        $pemesanan->id_user = $id_user;
+        $pemesanan->id_user = $request->id_user;
         $pemesanan->jumlah_berat = $berat;
         // $pemesanan->barang_in = Carbon::now()->format('H:i');
         $pemesanan->barang_in = now();
