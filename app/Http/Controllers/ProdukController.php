@@ -52,19 +52,15 @@ class ProdukController extends Controller
             'nama_barang' => 'required',
             'harga' => 'required',
             'keterangan' => 'required',
-           
         ]);
-      
        $data = Barang::find($id);
 
-      
        if (!$data) {
            return response()->json([
                'message' => 'Data not found'
            ], 404);
        }
 
-      
             $data->nama_barang = $request->nama_barang;
             $data->harga = $request->harga;
             $data->keterangan = $request->keterangan;

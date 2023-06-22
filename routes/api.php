@@ -24,8 +24,13 @@ Route::post('/register', [ApiAuthController::class, 'register']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/me', [ApiAuthController::class, 'me']);
+
     Route::get('/barang', [ApiAllController::class, 'barang']);
+    Route::post('/add-barang', [ApiAllController::class, 'add_barang']);
+    Route::put('/update-barang/{id}', [ApiAllController::class, 'update_barang']);
+    Route::delete('/delete-barang/{id}', [ApiAllController::class, 'delete_barang']);
     Route::get('/get_barang_by_id/{id}', [ApiAllController::class, 'get_barang_by_id']);
+    
     Route::get('/pemesanan',[ApiAllController::class,'pemesanan']);
     Route::get('/get_pemesanan_by_id/{id}', [ApiAllController::class, 'get_pemesanan_by_id']);
     Route::post('/add_pemesanan',[ApiAllController::class,'add_pemesanan']);

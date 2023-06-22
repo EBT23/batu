@@ -34,6 +34,7 @@ class LaporanExport implements FromCollection, WithHeadings, WithStyles
             'HARGA', 
             'NAMA PEMESAN', 
             'STATUS PEMBAYARAN',
+            'TANGGAL PEMBELIAN',
             'TOTAL HARGA',
         ],
         ];

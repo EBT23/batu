@@ -27,7 +27,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ $title }}</h5>
                 <div>
-                    <a href="{{ route('export.excel') }}" type="button" class="btn btn-success mb-3"> <i class="fas fa-download"> Print</i></a>
+                    <a href="{{ route('export.excel') }}" type="button" class="btn btn-success mb-3"> <i class="fas fa-download text-white"> Print</i></a>
                 </div>
               
               <div class="table-responsive">
@@ -44,11 +44,14 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @php
+                        $subtotal = 0;
+                    @endphp
                     @foreach ($laporan as $item)
                         <tr role="row" class="odd">
                           <td class="sorting_1">{{ $item->nama_barang }}</td>
                           <td>{{ $item->jumlah_berat }} Ton</td>
-                          <td>{{ $item->harga }}</td>
+                          <td>{{ number_format($item->harga) }}</td>
                           <td>{{ $item->name }}</td>
                           <td> 
                             <span class="badge rounded-pill bg-success">
@@ -56,12 +59,18 @@
                             </span>
                           </td>
                           <td>{{ date_format(date_create($item->created_at),'d-M-Y') }}</td>
-                          <td>{{ $item->total_harga }}</td>
+                          <td>{{ number_format($item->total_harga) }}</td>
                         </tr> 
+                    @php
+                      $subtotal += $item->total_harga ?? 0;
+                    @endphp
                     @endforeach
                    </tbody>
                   <tfoot>
-                    <tr><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">Position</th><th rowspan="1" colspan="1">Office</th><th rowspan="1" colspan="1">Age</th><th rowspan="1" colspan="1">Start date</th><th rowspan="1" colspan="1">Salary</th></tr>
+                    <tr>
+                      <th rowspan="1" colspan="6"><b>TOTAL PENJUALAN</b></th>
+                      <th rowspan="1" colspan="1">{{ number_format($subtotal) }} </th>
+                    </tr>
                   </tfoot>
                 </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="zero_config_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="zero_config_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="zero_config_previous"><a href="#" aria-controls="zero_config" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="zero_config" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="zero_config" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="zero_config" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="zero_config" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="zero_config" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="zero_config" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="zero_config_next"><a href="#" aria-controls="zero_config" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
               </div>

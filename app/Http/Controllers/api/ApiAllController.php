@@ -9,6 +9,8 @@ use App\Models\Barang;
 use App\Models\Pemesanan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class ApiAllController extends Controller
 {
@@ -19,6 +21,89 @@ class ApiAllController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Data berhasil ditampilkan',
+            'data' => $barang
+        ]);
+    }
+    public function add_barang(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nama_barang' => 'required',
+            'harga' => 'required',
+            'keterangan' => 'required',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
+            $gambarName = time() . '_' . $gambar->getClientOriginalName();
+            $path = $gambar->move(public_path('upload/produk'), $gambarName);
+            $gambar->gambar = $gambarName;
+        } else {
+            $gambarName = null;
+        }
+
+        $barang = Barang::create([
+            'nama_barang' => $validatedData['nama_barang'],
+            'harga' => $validatedData['harga'],
+            'keterangan' => $validatedData['keterangan'],
+            'gambar' => $gambarName,
+        ]);
+
+    
+        return response()->json([
+            'message' => 'Data pengeluaran berhasil ditambahkan.',
+            'data' => $barang,
+        ], 201);
+    }
+
+    public function update_barang(Request $request, $id)
+    {
+        $barang = Barang::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'nama_barang' => 'required',
+            'harga' => 'required',
+            'keterangan' => 'required',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+    
+        $barang->nama_barang = $request->nama_barang;
+        $barang->harga = $request->harga;
+        $barang->keterangan = $request->keterangan;
+    
+        $gambarPath = public_path('upload/produk/' . $barang->gambar);
+
+        if ($request->hasFile('gambar')) {
+          // hapus gambar
+            if (file_exists($gambarPath)) {
+                unlink($gambarPath);
+            }
+    
+            // upload gambar baru
+            $file = $request->file('gambar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->move(public_path('upload/produk'), $filename);
+            $barang->gambar = $path;
+        }
+    
+        $barang->save();
+    
+        return response()->json([
+            'message' => 'Data pengeluaran berhasil diupdate'
+        ]);
+    }
+
+    public function delete_barang($id)
+    {
+        $barang = Barang::findOrFail($id);
+        $barang->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Pengeluaran berhasil dihapus',
             'data' => $barang
         ]);
     }
@@ -88,7 +173,7 @@ class ApiAllController extends Controller
         $pemesanan->id_user = $id_user;
         $pemesanan->jumlah_berat = $berat;
         // $pemesanan->barang_in = Carbon::now()->format('H:i');
-        $pemesanan->barang_in = null;
+        $pemesanan->barang_in = now();
         $pemesanan->barang_out = null;
         $pemesanan->status_pemesanan = 'Pending';
         $pemesanan->total_harga = $totalHarga;

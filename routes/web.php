@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\DashboardController;
@@ -44,6 +45,23 @@ Route::controller(PemesananController::class)->group( function (){
 });
 
 
-
-
-
+Route::get('/route-cache', function () {
+    Artisan::call('route:cache');
+    return 'Routes cache cleared';
+});
+Route::get('/config-cache', function () {
+    Artisan::call('config:cache');
+    return 'Config cache cleared';
+});
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    return 'Application cache cleared';
+});
+Route::get('/view-clear', function () {
+    Artisan::call('view:clear');
+    return 'View cache cleared';
+});
+Route::get('/optimize', function () {
+    Artisan::call('optimize');
+    return 'Routes cache cleared';
+});
