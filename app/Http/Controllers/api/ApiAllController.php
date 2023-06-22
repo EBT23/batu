@@ -177,6 +177,9 @@ class ApiAllController extends Controller
         $pemesanan->barang_out = null;
         $pemesanan->status_pemesanan = 'Pending';
         $pemesanan->total_harga = $totalHarga;
+        $pemesanan->order_id = $request->order_id;
+        $pemesanan->redirect_url = $request->redirect_url;
+
         $pemesanan->created_at = now();
       
 

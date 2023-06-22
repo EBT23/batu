@@ -22,7 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [ApiAuthController::class, 'login']);
 Route::post('/register', [ApiAuthController::class, 'register']);
 
-Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/me', [ApiAuthController::class, 'me']);
 
     Route::get('/barang', [ApiAllController::class, 'barang']);
@@ -36,4 +35,3 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/add_pemesanan',[ApiAllController::class,'add_pemesanan']);
     Route::put('/update_pemesanan/{id}',[ApiAllController::class,'update_pemesanan']);
     Route::delete('/delete_pemesanan/{id}',[ApiAllController::class,'delete_pemesanan']);
-});
